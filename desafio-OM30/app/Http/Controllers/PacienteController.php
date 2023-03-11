@@ -14,18 +14,9 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $pacientes = Category::all(['id','nome','mae']);
+        return response()->json($pacientes);
+    }    
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +26,11 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paciente = Paciente::create($request->post());
+        return response()->json([
+            'message'=>'Registro inserido com sucesso!',
+            'category'=>$paciente
+        ]);
     }
 
     /**
@@ -46,19 +41,8 @@ class PacienteController extends Controller
      */
     public function show(Paciente $paciente)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Paciente  $paciente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Paciente $paciente)
-    {
-        //
-    }
+        return response()->json($paciente);
+    }    
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +53,12 @@ class PacienteController extends Controller
      */
     public function update(Request $request, Paciente $paciente)
     {
-        //
+        $paciente->fill($request->post())->save();
+        return response()->json([
+            'message'=>'Registro Alterado com sucesso!!',
+            'paciente'=>$paciente
+        ]);
+
     }
 
     /**
@@ -80,6 +69,9 @@ class PacienteController extends Controller
      */
     public function destroy(Paciente $paciente)
     {
-        //
+        $paciente->delete();
+        return response()->json([
+            'message'=>'Registro Excluído com sucesso!!'
+        ]);
     }
 }
