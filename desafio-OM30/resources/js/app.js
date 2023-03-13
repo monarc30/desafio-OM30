@@ -3,6 +3,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import BootstrapVue from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+
 window.Vue = require("vue").default;
 
 import App from './components/App.vue';

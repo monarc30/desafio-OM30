@@ -8,9 +8,9 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Nome da m&atilde;e</th>
-                <th>Data de nascimento</th>
+                <!-- <th>Data de nascimento</th>
                 <th>CPF</th>
-                <th>CNS</th>
+                <th>CNS</th> -->
                 <th>Foto</th>
                 <th>Cep</th>
                 <th>Endere&ccedil;o</th>
@@ -29,9 +29,9 @@
                 <td>{{ paciente.id }}</td>
                 <td>{{ paciente.nome }}</td>
                 <td>{{ paciente.mae }}</td>
-                <td>{{ paciente.data_nascimento }}</td>
+                <!-- <td>{{ paciente.data_nascimento }}</td>
                 <td>{{ paciente.cpf }}</td>
-                <td>{{ paciente.cns }}</td>
+                <td>{{ paciente.cns }}</td> -->
                 <td>{{ paciente.file_path }}</td>
                 <td>{{ paciente.cep }}</td>
                 <td>{{ paciente.endereco }}</td>
