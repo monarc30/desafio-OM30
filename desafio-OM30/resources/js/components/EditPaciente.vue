@@ -72,16 +72,16 @@
         },
         created() {
             this.axios
-                .get(`http://localhost:8000/api/paciente/edit/${this.$route.params.id}`)
+                .get(`http://localhost:8000/api/pacientes/${this.$route.params.id}`)
                 .then((response) => {
                     this.paciente = response.data;
                     // console.log(response.data);
                 });
         },
         methods: {
-            updatePaciente() {
+            updatePaciente() {                
                 this.axios
-                    .post(`http://localhost:8000/api/paciente/update/${this.$route.params.id}`, this.paciente)
+                    .put(`http://localhost:8000/api/pacientes/${this.$route.params.id}`, this.paciente)
                     .then((response) => {
                         this.$router.push({name: 'home'});
                     });

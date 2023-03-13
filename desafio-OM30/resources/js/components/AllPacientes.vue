@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="text-center">Pacientes</h3><br/>
+        <h3 class="text-center">Lista de Pacientes</h3><br/>
  
         <table class="table table-bordered">
             <thead>
@@ -72,7 +72,7 @@
         methods: {
             deletePaciente(id) {
                 this.axios
-                    .delete(`http://localhost:8000/api/paciente/delete/${id}`)
+                    .delete(`http://localhost:8000/api/pacientes/${id}`)
                     .then(response => {
                         let i = this.pacientes.map(item => item.id).indexOf(id); // find index of your object
                         this.pacientes.splice(i, 1)

@@ -24,3 +24,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('{any}', function () {
     return view('app');
 })->where('any', '.*');
+
+//Route::get('/pacientes', [App\Http\Controllers\PacienteController::class, 'index'])->name('home');

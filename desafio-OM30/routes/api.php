@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('api/pacientes',App\Http\Controllers\PacienteController::class)->only(['index','store','show','update','destroy']);
+Route::resource('pacientes',App\Http\Controllers\PacienteController::class)->only(['index','store','show','update','destroy']);
 

@@ -14,7 +14,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Category::all(['id','nome','mae']);
+        $pacientes = Paciente::all();
+        
         return response()->json($pacientes);
     }    
 
@@ -26,10 +27,10 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $paciente = Paciente::create($request->post());
+        $paciente = Paciente::create($request->post());        
         return response()->json([
             'message'=>'Registro inserido com sucesso!',
-            'category'=>$paciente
+            'paciente'=>$paciente
         ]);
     }
 
@@ -71,7 +72,7 @@ class PacienteController extends Controller
     {
         $paciente->delete();
         return response()->json([
-            'message'=>'Registro Excluído com sucesso!!'
+            'message'=>'Registro excluido com sucesso!'
         ]);
     }
 }
