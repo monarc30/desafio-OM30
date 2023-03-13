@@ -19,9 +19,9 @@
                 <th>Bairro</th>
                 <th>Cidade</th>
                 <th>Estado</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-                <th>Actions</th>
+                <!-- <th>Created At</th>
+                <th>Updated At</th> -->
+                <th>A&ccedil;&otilde;es</th>
             </tr>
             </thead>
             <tbody>
@@ -40,8 +40,8 @@
                 <td>{{ paciente.bairro }}</td>
                 <td>{{ paciente.cidade }}</td>
                 <td>{{ paciente.estado }}</td>
-                <td>{{ paciente.created_at }}</td>
-                <td>{{ paciente.updated_at }}</td>
+                <!-- <td>{{ paciente.created_at }}</td>
+                <td>{{ paciente.updated_at }}</td> -->
                 <td>
                     <div class="btn-group" role="group">
                         <router-link :to="{name: 'edit', params: { id: paciente.id }}" class="btn btn-primary">Edit
