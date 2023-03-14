@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/pacientes/list',[App\Http\Controllers\PacienteController::class, 'list']);
+Route::get('/pacientes/CEP',[App\Http\Controllers\PacienteController::class, 'getCEP']);
 Route::resource('pacientes',App\Http\Controllers\PacienteController::class)->only(['index','store','show','update','destroy']);
 

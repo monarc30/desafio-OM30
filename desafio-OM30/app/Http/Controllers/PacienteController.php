@@ -75,4 +75,37 @@ class PacienteController extends Controller
             'message'=>'Registro excluido com sucesso!'
         ]);
     }
+
+    /**
+     * Get all data by search.
+     *
+     * @param  \App\Models\Paciente  $paciente
+     * @return \Illuminate\Http\Response
+     */
+    public function list(Request $request) 
+    {
+        //$paciente_query = Paciente::with(['paciente', 'endereco']);
+        $paciente_query = Paciente::with([]);
+        if ($request->nome) {
+            $paciente_query->where('nome','LIKE', '%'.$request->nome.'%');
+        }        
+        if ($request->cpf) {
+            $paciente_query->where('cpf','LIKE', '%'.$request->cpf.'%');
+        }     
+        $pacientes=$paciente_query->get();
+        if ($request->cep) {
+            $paciente_query->where('cep','LIKE', '%'.$request->cep.'%');
+            $pacientes=$paciente_query->get(['cep', 
+            'endereco', 
+            'complemento', 
+            'bairro', 
+            'cidade',
+            'estado',
+            'id']);        
+        }             
+        return response()->json([
+            'message'=>'Registro encontrado com sucesso!',
+            'data'=>$pacientes
+        ], 200);
+    }    
 }

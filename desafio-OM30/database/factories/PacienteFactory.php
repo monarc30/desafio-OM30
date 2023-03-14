@@ -36,7 +36,7 @@ class PacienteFactory extends Factory
             'cns' => $this->faker->numerify('###############'),
             'file_path' => $this->faker->imageUrl($width = 200, $height = 200),
             'cep' => $this->faker->postcode,
-            'endereco' => $this->faker->address,
+            'endereco' => $this->faker->streetAddress,
             'numero' => $this->faker->numberBetween($min = 1, $max = 6000),
             'complemento' => $this->faker->secondaryAddress,
             'bairro' => $this->faker->streetAddress,
