@@ -16,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/pacientes/list',[App\Http\Controllers\PacienteController::class, 'list']);
 Route::get('/pacientes/CEP',[App\Http\Controllers\PacienteController::class, 'getCEP']);
+
+Route::post('/pacientes/upload', [App\Http\Controllers\PacienteController::class,'upload_csv_file'])->name('upload');
+
 Route::resource('pacientes',App\Http\Controllers\PacienteController::class)->only(['index','store','show','update','destroy']);
 

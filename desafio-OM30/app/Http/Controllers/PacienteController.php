@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Cache;
 
 class PacienteController extends Controller
 {
@@ -14,9 +15,13 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::all();
+        $expiration = 60;
+        $key = "paciente_";
         
-        return response()->json($pacientes);
+        return Cache::remember($key, $expiration, function() {
+            $pacientes = Paciente::all();        
+            return response()->json($pacientes);
+        });
     }    
 
     /**
@@ -84,6 +89,10 @@ class PacienteController extends Controller
      */
     public function list(Request $request) 
     {
+        //cache
+        $expiration = 60;
+        $key = "paciente_";
+
         //$paciente_query = Paciente::with(['paciente', 'endereco']);        
         $paciente_query = Paciente::with([]);
         if ($request->nome) {
@@ -97,13 +106,48 @@ class PacienteController extends Controller
         if ($request->cep) {
             $results = file_get_contents('https://viacep.com.br/ws/'.$request->cep.'/json/');
             $results = json_decode($results);
-            return response()->json([                
-                'data'=>$results
-            ], 200);
+
+            return Cache::remember($key, $expiration, function() use ($results) {
+                return response()->json([                
+                    'data'=>$results
+                ], 200);
+            });
+                
         }             
-        return response()->json([
-            'message'=>'Registro encontrado com sucesso!',
-            'data'=>$pacientes
-        ], 200);
+        return Cache::remember($key, $expiration, function() use ($pacientes) {
+            return response()->json([
+                'message'=>'Registro encontrado com sucesso!',
+                'data'=>$pacientes
+            ], 200);
+        });    
     }    
+
+
+    /**
+     * upload csv File.
+     *
+     * @param  \App\Models\Paciente  $paciente
+     * @return \Illuminate\Http\Response
+     */
+    public function upload_csv_file(Request $request)
+    {
+        if( $request->has('csv') ) {
+
+            $csv    = file($request->csv);
+            $chunks = array_chunk($csv,1000);
+            $header = [];
+
+            foreach ($chunks as $key => $chunk) {
+            $data = array_map('str_getcsv', $chunk);
+                if($key == 0){
+                    $header = $data[0];
+                    unset($data[0]);
+                }
+
+                ItemCSVUploadJob::dispatch($data, $header);                
+            }
+
+        }
+        return "please upload CSV file";
+    }
 }
