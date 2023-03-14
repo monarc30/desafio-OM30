@@ -84,7 +84,7 @@ class PacienteController extends Controller
      */
     public function list(Request $request) 
     {
-        //$paciente_query = Paciente::with(['paciente', 'endereco']);
+        //$paciente_query = Paciente::with(['paciente', 'endereco']);        
         $paciente_query = Paciente::with([]);
         if ($request->nome) {
             $paciente_query->where('nome','LIKE', '%'.$request->nome.'%');
@@ -93,15 +93,13 @@ class PacienteController extends Controller
             $paciente_query->where('cpf','LIKE', '%'.$request->cpf.'%');
         }     
         $pacientes=$paciente_query->get();
+
         if ($request->cep) {
-            $paciente_query->where('cep','LIKE', '%'.$request->cep.'%');
-            $pacientes=$paciente_query->get(['cep', 
-            'endereco', 
-            'complemento', 
-            'bairro', 
-            'cidade',
-            'estado',
-            'id']);        
+            $results = file_get_contents('https://viacep.com.br/ws/'.$request->cep.'/json/');
+            $results = json_decode($results);
+            return response()->json([                
+                'data'=>$results
+            ], 200);
         }             
         return response()->json([
             'message'=>'Registro encontrado com sucesso!',
