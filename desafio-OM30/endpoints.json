@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "c6060dc4-cda7-476b-9c00-c6cb7aa96a04",
+		"name": "OM30",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Pacientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pacientes by Nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/list?nome=FERNANDO",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						"list"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "FERNANDO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pacientes by CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/list?cpf=70872010268",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						"list"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "70872010268"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pacientes by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nome",
+							"value": "maria",
+							"type": "text"
+						},
+						{
+							"key": "mae",
+							"value": "maria",
+							"type": "text"
+						},
+						{
+							"key": "data_nascimento",
+							"value": "1978-12-31",
+							"type": "text"
+						},
+						{
+							"key": "cpf",
+							"value": "11111111111",
+							"type": "text"
+						},
+						{
+							"key": "cns",
+							"value": "111111111111111",
+							"type": "text"
+						},
+						{
+							"key": "file_path",
+							"value": "image1",
+							"type": "text"
+						},
+						{
+							"key": "cep",
+							"value": "02206000",
+							"type": "text"
+						},
+						{
+							"key": "endereco",
+							"value": "rua maria",
+							"type": "text"
+						},
+						{
+							"key": "numero",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "complemento",
+							"value": "ap 67 bloco 2",
+							"type": "text"
+						},
+						{
+							"key": "bairro",
+							"value": "vila maria",
+							"type": "text"
+						},
+						{
+							"key": "cidade",
+							"value": "são paulo",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "SP",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Paciente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n   {\r\n        \"id\": 17,\r\n        \"nome\": \"Antonio\",\r\n        \"mae\": \"MARIA\",\r\n        \"data_nascimento\": \"1975-12-27\",\r\n        \"cpf\": \"20385699832\",\r\n        \"cns\": \"20385699832\",\r\n        \"file_path\": \"imagem\",\r\n        \"cep\": \"02206-000\",\r\n        \"endereco\": \"rua martins fontes\",\r\n        \"numero\": 22,\r\n        \"complemento\": \"1321 ap 5 torre 1\",\r\n        \"bairro\": \"vila maria\",\r\n        \"cidade\": \"São Paulo\",\r\n        \"estado\": \"SP\",\r\n        \"created_at\": \"2023-03-13T03:05:24.000000Z\",\r\n        \"updated_at\": \"2023-03-13T03:05:29.000000Z\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "via CEP",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Busca CEP",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "UploadCSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pacientes/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pacientes",
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
